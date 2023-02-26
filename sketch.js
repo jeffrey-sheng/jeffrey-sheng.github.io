@@ -423,3 +423,10 @@ function keyPressed() {
   console.log(userEntry);
   console.log("cursorIndex:", cursorIndex)
 }
+
+// Don't change this method. This method prevents the page from scrolling when spacebar is pressed.
+window.addEventListener('keydown', function(e) {
+  if(e.key == " " && e.target == document.body) {
+    e.preventDefault();
+  }
+});
