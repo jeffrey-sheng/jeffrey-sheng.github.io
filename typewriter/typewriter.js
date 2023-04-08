@@ -1,19 +1,17 @@
-const borderAlpha = 220;
-
 // the width of each shape/letter
-const letterSize = 50
+const letterSize = 100;
 
-const STROKE_WEIGHT = 1;
+const STROKE_WEIGHT = 0;
 
 const startPosition = {
   x: 70,
   y: 70
-}
+};
 
 const margin = {
-  x: 1.1 * letterSize,
-  y: 1.5 * letterSize
-}
+  x: letterSize,
+  y: letterSize
+};
 
 // what user typed
 let userEntry = [];
@@ -27,7 +25,7 @@ function setup() {
 
 function draw() {
   strokeWeight(STROKE_WEIGHT);
-  background("black");
+  background("white");
   let indexOfUserEntry = 0;
   for (let y = startPosition.y; y < windowHeight - letterSize - startPosition.y; y += margin.y) {
     isBreak = false;
@@ -42,10 +40,11 @@ function draw() {
         break;
       }
       // draw
-      const currEntry = userEntry[indexOfUserEntry]
+      const currEntry = userEntry[indexOfUserEntry];
       if (currEntry !== " ") {
         // draw the letter 
-        window[currEntry](x, y);
+        // window[currEntry](x, y);
+        currEntry.show(x, y);
       }
       indexOfUserEntry++;
     }
@@ -70,7 +69,7 @@ function keyPressed() {
     // space
     userEntry.splice(cursorIndex, 0, " ");
     cursorIndex++;
-  } else if (keyCode == 37 && cursorIndex > 0 ) {
+  } else if (keyCode == 37 && cursorIndex > 0) {
     // left arror
     cursorIndex--;
   } else if (keyCode == 39 && cursorIndex < userEntry.length) {
@@ -79,16 +78,16 @@ function keyPressed() {
   }
   else if (keyCode >= 65 && keyCode <= 90) {
     // letter
-    userEntry.splice(cursorIndex, 0, String.fromCharCode(keyCode));
+    userEntry.splice(cursorIndex, 0, eval(`new ${String.fromCharCode(keyCode)}()`));
     cursorIndex++;
   }
   console.log(userEntry);
-  console.log("cursorIndex:", cursorIndex)
+  console.log("cursorIndex:", cursorIndex);
 }
 
 // Don't change this method. This method prevents the page from scrolling when spacebar is pressed.
-window.addEventListener('keydown', function(e) {
-  if(e.key == " " && e.target == document.body) {
+window.addEventListener('keydown', function (e) {
+  if (e.key == " " && e.target == document.body) {
     e.preventDefault();
   }
 });

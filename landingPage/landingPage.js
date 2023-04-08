@@ -31,14 +31,6 @@ let defaultBodyOptions = {
     friction: 0.1,
 };
 
-const COLOR_PALETTE = {
-    Yellow: "#FFD148",
-    Red: "#FF7051",
-    Green: "#00C1A8",
-    Purple: "#8246D1",
-    Pink: "#FF8BC5"
-};
-
 const BORDER_WIDTH = 100;
 const BORDER_DIMENSION = {
 
@@ -130,15 +122,6 @@ function createSvgBody(path_to_svg) {
         new SvgBody(200, 200, vertexSets[0]);
     });
 }
-
-function getRandomInteger(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function getRandomColorFromColorPalette() {
-    var keys = Object.keys(COLOR_PALETTE);
-    return COLOR_PALETTE[keys[keys.length * Math.random() << 0]];
-};
 
 let bodies = [];
 
