@@ -81,6 +81,46 @@ function keyPressed() {
     userEntry.splice(cursorIndex, 0, eval(`new ${String.fromCharCode(keyCode)}()`));
     cursorIndex++;
   }
+  else if (keyCode == 219) {
+    // Opening Bracket
+    userEntry.splice(cursorIndex, 0, new OpeningBracket());
+    cursorIndex++;
+  }
+  else if (keyCode == 221) {
+    // Closing Bracket
+    userEntry.splice(cursorIndex, 0, new ClosingBracket());
+    cursorIndex++;
+  }
+  else if (keyCode == 190) {
+    // Period
+    userEntry.splice(cursorIndex, 0, new Period());
+    cursorIndex++;
+  }
+  else if (keyCode == 222) {
+    // Quote
+    userEntry.splice(cursorIndex, 0, new Quote());
+    cursorIndex++;
+  }
+  else if (keyCode == 191) {
+    // Slash
+    userEntry.splice(cursorIndex, 0, new Slash());
+    cursorIndex++;
+  }
+  else if (keyCode == 188) {
+    // Comma
+    userEntry.splice(cursorIndex, 0, new Comma());
+    cursorIndex++;
+  }
+  else if (keyCode == 186) {
+    // Semi-colon
+    userEntry.splice(cursorIndex, 0, new SemiColon());
+    cursorIndex++;
+  }
+  else if (keyCode == 220) {
+    // Back Slash
+    userEntry.splice(cursorIndex, 0, new BackSlash());
+    cursorIndex++;
+  }
   console.log(userEntry);
   console.log("cursorIndex:", cursorIndex);
 }
