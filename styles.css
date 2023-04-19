@@ -4,3 +4,27 @@ body {
   padding: 0;
   overflow: hidden;
 }
+
+.icon-left-arrow {
+  padding: 50px;
+  background-size: contain;
+  background-color: white;
+  -webkit-mask-image: url('public/icon-left-arrow.svg');
+  mask-image: url('public/icon-left-arrow.svg');
+}
+
+.icon-right-arrow {
+  padding: 50px;
+  background-size: contain;
+  background-color: white;
+  -webkit-mask-image: url('public/icon-right-arrow.svg');
+  mask-image: url('public/icon-right-arrow.svg');
+}
+
+.icon-home {
+  padding: 50px;
+  background-size: contain;
+  background-color: white;
+  -webkit-mask-image: url('public/icon-home.svg');
+  mask-image: url('public/icon-home.svg');
+}

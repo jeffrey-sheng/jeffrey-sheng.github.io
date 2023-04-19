@@ -20,34 +20,27 @@ const margin = {
   y: letterSize
 };
 
-const INSTRUCTION_CONTENT = "Start typing. Valid characters are A through Z, spacebar, and ] ' [ , / . ; \\ \nUse left and right arrow key as well as backspace to make adjustments.";
+const INSTRUCTION_CONTENT = "Start typing... Valid characters are A through Z, spacebar, and ] ' [ , / . ; \\ \nUse left and right arrow key as well as backspace to make adjustments.";
 
 // what user typed
 let userEntry = [];
 
 let cursorIndex = 0;
 
-let Montserrat;
+let MontserratFont;
 
-let backgroundImage;
 function preload() {
-  // Montserrat = loadFont("https://github.com/JulietaUla/Montserrat/blob/master/fonts/otf/Montserrat-Regular.otf?raw=true");
-  backgroundImage = loadImage('public/background.avif');
+  MontserratFont = loadFont("public/Montserrat-Regular.otf");
 }
 
 function setup() {
   startPosition.x = windowWidth * 0.4;
   createCanvas(windowWidth, windowHeight);
-  let startButton = createButton("BACK");
-  // startButton.style("background-image", "url('public/play-button.jpg')");
-  startButton.style("font-size", "30px");
-  startButton.style("font-family", "'Montserrat', sans-serif");
-  startButton.style("letter-spacing", "1px");
-  startButton.style("padding", "20px 40px");
-  startButton.style("border-radius", "50px");
-  // startButton.style("border", "none");
-  startButton.position(BACK_BUTTON_DIMENSION.margin.x, BACK_BUTTON_DIMENSION.margin.y);
-  startButton.mouseReleased(() => location.href = "./index.html");
+  let backButton = createButton("");
+  backButton.addClass("icon-left-arrow");
+
+  backButton.position(BACK_BUTTON_DIMENSION.margin.x, BACK_BUTTON_DIMENSION.margin.y);
+  backButton.mouseReleased(() => location.href = "./index.html");
   // background(255);
 }
 
@@ -57,7 +50,7 @@ function draw() {
   let indexOfUserEntry = 0;
 
   push();
-  // textFont(Montserrat);
+  textFont(MontserratFont);
   textSize(40);
   fill("white");
   textLeading(70);
