@@ -53,12 +53,13 @@ function setup() {
 
 function draw() {
   strokeWeight(STROKE_WEIGHT);
-  background(backgroundImage);
+  background("black");
   let indexOfUserEntry = 0;
 
   push();
   // textFont(Montserrat);
   textSize(40);
+  fill("white");
   textLeading(70);
   text(INSTRUCTION_CONTENT, BACK_BUTTON_DIMENSION.margin.x, BACK_BUTTON_DIMENSION.margin.y + letterSize * 2, windowWidth * 0.3, windowHeight / 2);
   pop();

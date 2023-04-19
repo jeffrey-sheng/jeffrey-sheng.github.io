@@ -376,9 +376,9 @@ function draw() {
     //     createRandomRectangle();
     // }
 
+    background("black");
     bodies.forEach(body => body.show());
 
-    background(backgroundImage);
     // console.log(svgBody);
     if (mouseIsPressed) {
         if (getRandomInteger(1, 5) == 1) {
