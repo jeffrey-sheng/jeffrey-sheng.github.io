@@ -41,7 +41,6 @@ const START_BUTTON_DIMENSION = {
         x: 50,
         y: 50
     },
-
 };
 const TITLE_DIMENSION = {
     w: 800,
@@ -63,6 +62,7 @@ const SHAPE_PROPERTIES = {
     numCircle: 30
 };
 
+let backgroundImage;
 
 let SEMI_CIRCLE_VERTICES;
 
@@ -296,6 +296,11 @@ function createRandomRectangleGivenPosition(x, y) {
 // let walls = Composite.create();
 // let topWall = new RectangleBody(400, 25, 800, 50, { isStatic: true });
 
+function preload() {
+    // Montserrat = loadFont("https://github.com/JulietaUla/Montserrat/blob/master/fonts/otf/Montserrat-Regular.otf?raw=true");
+    backgroundImage = loadImage('public/background.avif');
+}
+
 function setup() {
     noStroke();
     loadSvg("/public/semi-circle.svg")
@@ -362,7 +367,6 @@ function setup() {
 
 function draw() {
     // console.log(bodies);
-    background(255);
 
     // Create Start button
 
@@ -373,6 +377,8 @@ function draw() {
     // }
 
     bodies.forEach(body => body.show());
+
+    background(backgroundImage);
     // console.log(svgBody);
     if (mouseIsPressed) {
         if (getRandomInteger(1, 5) == 1) {
