@@ -51,12 +51,12 @@ const TITLE_DIMENSION = {
 const SHAPE_PROPERTIES = {
     dimension: {
         rect: {
-            min_w: 100,
-            max_w: 150
+            min_w: 50,
+            max_w: 75
         },
         circle: {
-            min_d: 100,
-            max_d: 150
+            min_d: 50,
+            max_d: 75
         }
     },
     numRect: 30,
@@ -262,6 +262,13 @@ function createRandomCircle() {
     );
 }
 
+function createRandomCirleGivenPosition(x, y) {
+    new CircleBody(
+        x, y,
+        getRandomInteger(SHAPE_PROPERTIES.dimension.circle.min_d, SHAPE_PROPERTIES.dimension.circle.max_d)
+    );
+}
+
 function createRandomRectangle() {
     w = getRandomInteger(SHAPE_PROPERTIES.dimension.rect.min_w, SHAPE_PROPERTIES.dimension.rect.max_w);
     new RectangleBody(
@@ -272,13 +279,19 @@ function createRandomRectangle() {
     );
 }
 
-function createRandomSemiCircle() {
-    new SemiCircleBody(
-        getRandomInteger(BORDER_WIDTH * 2, windowWidth - BORDER_WIDTH * 2),
-        getRandomInteger(BORDER_WIDTH * 2, windowHeight - BORDER_WIDTH * 2),
-        getRandomInteger(30, 50)
-    );
+function createRandomRectangleGivenPosition(x, y) {
+    w = getRandomInteger(SHAPE_PROPERTIES.dimension.rect.min_w, SHAPE_PROPERTIES.dimension.rect.max_w);
+    new RectangleBody(x, y, w, w);
 }
+
+
+// function createRandomSemiCircle() {
+//     new SemiCircleBody(
+//         getRandomInteger(BORDER_WIDTH * 2, windowWidth - BORDER_WIDTH * 2),
+//         getRandomInteger(BORDER_WIDTH * 2, windowHeight - BORDER_WIDTH * 2),
+//         getRandomInteger(30, 50)
+//     );
+// }
 
 // let walls = Composite.create();
 // let topWall = new RectangleBody(400, 25, 800, 50, { isStatic: true });
@@ -361,17 +374,12 @@ function draw() {
 
     bodies.forEach(body => body.show());
     // console.log(svgBody);
-    beginShape();
-    // if (vertexSets) {
-    //     vertexSets.forEach(v => {
-    //         vertex(v.x, v.y);
-    //     });
-    // }
-    // vertex(200, 400);
-    // vertex(400, 200);
-    // vertex(200, 200);
-    // vertex(200, 300);
-    endShape(CLOSE);
+    if (mouseIsPressed) {
+        if (getRandomInteger(1, 5) == 1) {
+            createRandomCirleGivenPosition(mouseX - 20, mouseY - 20);
+            createRandomRectangleGivenPosition(mouseX + 20, mouseY - 20);
+        }
+    }
 }
 
 function mouseMoved() {
@@ -379,3 +387,5 @@ function mouseMoved() {
     // new CircleBody(mouseX, mouseY, 30);
     // new RectangleBody(mouseX, mouseY, 30, 30);
 }
+
+function mouseDragged() { }

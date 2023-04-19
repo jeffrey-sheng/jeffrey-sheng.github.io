@@ -27,6 +27,10 @@ function draw() {
   strokeWeight(STROKE_WEIGHT);
   background("white");
   let indexOfUserEntry = 0;
+  if (userEntry.length == 0) {
+    textSize(50);
+    text('Start Typing...', letterSize, letterSize);
+  }
   for (let y = startPosition.y; y < windowHeight - letterSize - startPosition.y; y += margin.y) {
     isBreak = false;
     for (let x = startPosition.x; x < windowWidth - letterSize - startPosition.x; x += margin.x) {
@@ -55,7 +59,10 @@ function draw() {
 }
 
 function drawCursor(x, y) {
+  push();
+  fill(100);
   rect(x, y + letterSize + 5, letterSize, 2);
+  pop();
 }
 
 function keyPressed() {
