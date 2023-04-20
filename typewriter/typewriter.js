@@ -3,16 +3,17 @@ const letterSize = 100;
 
 const STROKE_WEIGHT = 0;
 
-const startPosition = {
-  x: undefined,
-  y: 70
-};
 
 const BACK_BUTTON_DIMENSION = {
   margin: {
     x: 50,
     y: 50
   },
+};
+
+const startPosition = {
+  x: undefined,
+  y: BACK_BUTTON_DIMENSION.margin.y + letterSize
 };
 
 const margin = {
@@ -34,7 +35,7 @@ function preload() {
 }
 
 function setup() {
-  startPosition.x = windowWidth * 0.4;
+  startPosition.x = windowWidth * 0.45;
   createCanvas(windowWidth, windowHeight);
   let backButton = createButton("");
   backButton.addClass("icon-left-arrow");
@@ -54,7 +55,7 @@ function draw() {
   textSize(40);
   fill("white");
   textLeading(70);
-  text(INSTRUCTION_CONTENT, BACK_BUTTON_DIMENSION.margin.x, BACK_BUTTON_DIMENSION.margin.y + letterSize * 2, windowWidth * 0.3, windowHeight / 2);
+  text(INSTRUCTION_CONTENT, BACK_BUTTON_DIMENSION.margin.x + 120, BACK_BUTTON_DIMENSION.margin.y + letterSize * 2, windowWidth * 0.3, windowHeight / 2);
   pop();
 
   for (let y = startPosition.y; y < windowHeight - letterSize - startPosition.y; y += margin.y) {

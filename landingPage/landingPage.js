@@ -55,10 +55,15 @@ const SHAPE_PROPERTIES = {
         circle: {
             min_d: 50,
             max_d: 75
+        },
+        triangle: {
+            min_d: 50,
+            max_d: 75
         }
     },
-    numRect: 100,
-    numCircle: 100
+    numRect: 70,
+    numCircle: 70,
+    numTriangle: 70,
 };
 
 let SHAPE_IMAGE, ALPHABET_IMAGE;
@@ -138,6 +143,30 @@ class CircleBody {
     };
 }
 
+class TriangleBody {
+    constructor(x, y, r, options = {}) {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.color = getRandomColorFromColorPalette();
+        this.options = { ...options, ...defaultBodyOptions };
+        this.body = Bodies.polygon(x, y, 3, this.r, this.options);
+        Composite.add(world, this.body);
+        bodies.push(this);
+    }
+
+    show() {
+        let position = this.body.position;
+        let angle = this.body.angle;
+        push();
+        fill(this.color);
+        translate(position.x, position.y);
+        rotate(angle);
+        triangle(0, - this.r, this.r / 2 * Math.sqrt(3), this.r / 2, -this.r / 2 * Math.sqrt(3), this.r / 2);
+        pop();
+    }
+}
+
 function createRandomCircle() {
     new CircleBody(
         getRandomInteger(0, windowWidth),
@@ -160,6 +189,14 @@ function createRandomRectangle() {
         getRandomInteger(0, windowHeight),
         w,
         w
+    );
+}
+
+function createRandomTriangle() {
+    new TriangleBody(
+        getRandomInteger(0, windowWidth),
+        getRandomInteger(0, windowWidth),
+        getRandomInteger(SHAPE_PROPERTIES.dimension.triangle.min_d, SHAPE_PROPERTIES.dimension.triangle.max_d),
     );
 }
 
@@ -212,6 +249,11 @@ function setup() {
     for (i = 0; i <= SHAPE_PROPERTIES.numRect; i++) {
         createRandomRectangle();
     }
+
+    // Create random triangle bodies
+    // for (i = 0; i <= SHAPE_PROPERTIES.numTriangle; i++) {
+    //     createRandomTriangle();
+    // }
 
     let startButton = createButton("");
     startButton.addClass("icon-right-arrow");
