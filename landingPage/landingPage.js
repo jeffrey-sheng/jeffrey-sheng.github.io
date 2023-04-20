@@ -61,12 +61,16 @@ const SHAPE_PROPERTIES = {
             max_d: 75
         }
     },
-    numRect: 70,
-    numCircle: 70,
-    numTriangle: 70,
+    numRect: 50,
+    numCircle: 50,
+    numTriangle: 50,
 };
 
-let SHAPE_IMAGE, ALPHABET_IMAGE;
+let SHAPE_IMAGE, ALPHABET_IMAGE, MontserratFont;
+
+let LANDING_PAGE_INSTRUCTION = "Try clicking anywhere";
+
+let showInstruction = true;
 
 let bodies = [];
 
@@ -162,7 +166,7 @@ class TriangleBody {
         fill(this.color);
         translate(position.x, position.y);
         rotate(angle);
-        triangle(0, - this.r, this.r / 2 * Math.sqrt(3), this.r / 2, -this.r / 2 * Math.sqrt(3), this.r / 2);
+        triangle(-this.r, 0, this.r / 2, this.r / 2 * Math.sqrt(3), this.r / 2, -this.r / 2 * Math.sqrt(3));
         pop();
     }
 }
@@ -192,6 +196,11 @@ function createRandomRectangle() {
     );
 }
 
+function createRandomRectangleGivenPosition(x, y) {
+    w = getRandomInteger(SHAPE_PROPERTIES.dimension.rect.min_w, SHAPE_PROPERTIES.dimension.rect.max_w);
+    new RectangleBody(x, y, w, w);
+}
+
 function createRandomTriangle() {
     new TriangleBody(
         getRandomInteger(0, windowWidth),
@@ -200,12 +209,15 @@ function createRandomTriangle() {
     );
 }
 
-function createRandomRectangleGivenPosition(x, y) {
-    w = getRandomInteger(SHAPE_PROPERTIES.dimension.rect.min_w, SHAPE_PROPERTIES.dimension.rect.max_w);
-    new RectangleBody(x, y, w, w);
+function createRandomTriangleGivenPosition(x, y) {
+    new TriangleBody(
+        x, y,
+        getRandomInteger(SHAPE_PROPERTIES.dimension.triangle.min_d, SHAPE_PROPERTIES.dimension.triangle.max_d),
+    );
 }
 
 function preload() {
+    MontserratFont = loadFont("public/Montserrat-Regular.otf");
     SHAPE_IMAGE = loadImage("public/shape.png", img => console.log("loaded"));
     ALPHABET_IMAGE = loadImage("public/alphabet.png", img => console.log("loaded"));
 }
@@ -236,9 +248,9 @@ function setup() {
     new RectangleBody(-BORDER_WIDTH / 2, windowHeight / 2, BORDER_WIDTH, windowHeight, { isStatic: true });
 
     // Create "Shape"
-    new RectangleImageBody(windowWidth / 2, windowHeight / 3, SHAPE_IMAGE, { mass: 20 });
+    new RectangleImageBody(windowWidth / 2, windowHeight / 3, SHAPE_IMAGE, { mass: 100 });
     // Create "Alphabet"
-    new RectangleImageBody(windowWidth / 2, windowHeight / 3 * 2, ALPHABET_IMAGE, { mass: 20 });
+    new RectangleImageBody(windowWidth / 2, windowHeight / 3 * 2, ALPHABET_IMAGE, { mass: 100 });
 
     // Create random circle bodies
     for (i = 0; i <= SHAPE_PROPERTIES.numCircle; i++) {
@@ -251,9 +263,9 @@ function setup() {
     }
 
     // Create random triangle bodies
-    // for (i = 0; i <= SHAPE_PROPERTIES.numTriangle; i++) {
-    //     createRandomTriangle();
-    // }
+    for (i = 0; i <= SHAPE_PROPERTIES.numTriangle; i++) {
+        createRandomTriangle();
+    }
 
     let startButton = createButton("");
     startButton.addClass("icon-right-arrow");
@@ -266,13 +278,25 @@ function setup() {
 
 function draw() {
     background("black");
+
+    if (showInstruction) {
+        push();
+        rectMode(CORNER);
+        textFont(MontserratFont);
+        textSize(40);
+        fill("white");
+        textLeading(70);
+        text(LANDING_PAGE_INSTRUCTION, START_BUTTON_DIMENSION.margin.x, START_BUTTON_DIMENSION.margin.y * 2.5, windowWidth * 0.3, windowHeight / 2);
+        pop();
+    }
+
     bodies.forEach(body => body.show());
 
     if (mouseIsPressed) {
-        // if (getRandomInteger(1, 5) == 1) {
+        showInstruction = false;
         createRandomCirleGivenPosition(mouseX, mouseY + 100);
         createRandomRectangleGivenPosition(mouseX + 20, mouseY - 20);
-        // }
+        createRandomTriangleGivenPosition(mouseX - 20, mouseY - 20);
     }
 }
 

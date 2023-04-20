@@ -55,7 +55,7 @@ function draw() {
   textSize(40);
   fill("white");
   textLeading(70);
-  text(INSTRUCTION_CONTENT, BACK_BUTTON_DIMENSION.margin.x + 120, BACK_BUTTON_DIMENSION.margin.y + letterSize * 2, windowWidth * 0.3, windowHeight / 2);
+  text(INSTRUCTION_CONTENT, BACK_BUTTON_DIMENSION.margin.x + 120, BACK_BUTTON_DIMENSION.margin.y * 5, windowWidth * 0.3, windowHeight / 2);
   pop();
 
   for (let y = startPosition.y; y < windowHeight - letterSize - startPosition.y; y += margin.y) {
