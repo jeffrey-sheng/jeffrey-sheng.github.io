@@ -34,12 +34,6 @@ const BORDER_DIMENSION = {
 
 };
 
-const START_BUTTON_DIMENSION = {
-    margin: {
-        x: 50,
-        y: 50
-    },
-};
 const TITLE_DIMENSION = {
     w: 540 * 2.5,
     h: 72 * 2.5,
@@ -68,7 +62,7 @@ const SHAPE_PROPERTIES = {
 
 let SHAPE_IMAGE, ALPHABET_IMAGE, MontserratFont;
 
-let LANDING_PAGE_INSTRUCTION = "Try clicking anywhere";
+const LANDING_PAGE_INSTRUCTION = "Try clicking anywhere";
 
 let showInstruction = true;
 
@@ -270,7 +264,7 @@ function setup() {
     let startButton = createButton("");
     startButton.addClass("icon-right-arrow");
 
-    startButton.position(windowWidth - START_BUTTON_DIMENSION.margin.x - 100, START_BUTTON_DIMENSION.margin.y);
+    startButton.position(windowWidth - NAV_BUTTON_DIMENSION.margin.x - 100, NAV_BUTTON_DIMENSION.margin.y);
     startButton.mouseReleased(() => location.href = "./typewriter.html");
 
     Runner.run(runner, engine);
@@ -286,7 +280,7 @@ function draw() {
         textSize(40);
         fill("white");
         textLeading(70);
-        text(LANDING_PAGE_INSTRUCTION, START_BUTTON_DIMENSION.margin.x, START_BUTTON_DIMENSION.margin.y * 2.5, windowWidth * 0.3, windowHeight / 2);
+        text(LANDING_PAGE_INSTRUCTION, NAV_BUTTON_DIMENSION.margin.x, NAV_BUTTON_DIMENSION.margin.y * 2.5, windowWidth * 0.3, windowHeight / 2);
         pop();
     }
 
@@ -298,6 +292,8 @@ function draw() {
         createRandomRectangleGivenPosition(mouseX + 20, mouseY - 20);
         createRandomTriangleGivenPosition(mouseX - 20, mouseY - 20);
     }
+
+    showFooter(MontserratFont);
 }
 
 function mouseMoved() { }

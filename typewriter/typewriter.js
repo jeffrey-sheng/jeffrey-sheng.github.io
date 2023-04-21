@@ -3,17 +3,9 @@ const letterSize = 100;
 
 const STROKE_WEIGHT = 0;
 
-
-const BACK_BUTTON_DIMENSION = {
-  margin: {
-    x: 50,
-    y: 50
-  },
-};
-
 const startPosition = {
   x: undefined,
-  y: BACK_BUTTON_DIMENSION.margin.y + letterSize
+  y: NAV_BUTTON_DIMENSION.margin.y + letterSize
 };
 
 const margin = {
@@ -40,7 +32,7 @@ function setup() {
   let backButton = createButton("");
   backButton.addClass("icon-left-arrow");
 
-  backButton.position(BACK_BUTTON_DIMENSION.margin.x, BACK_BUTTON_DIMENSION.margin.y);
+  backButton.position(NAV_BUTTON_DIMENSION.margin.x, NAV_BUTTON_DIMENSION.margin.y);
   backButton.mouseReleased(() => location.href = "./index.html");
   // background(255);
 }
@@ -55,8 +47,10 @@ function draw() {
   textSize(40);
   fill("white");
   textLeading(70);
-  text(INSTRUCTION_CONTENT, BACK_BUTTON_DIMENSION.margin.x + 120, BACK_BUTTON_DIMENSION.margin.y * 5, windowWidth * 0.3, windowHeight / 2);
+  text(INSTRUCTION_CONTENT, NAV_BUTTON_DIMENSION.margin.x + 120, NAV_BUTTON_DIMENSION.margin.y * 5, windowWidth * 0.3, windowHeight / 2);
   pop();
+
+  showFooter(MontserratFont);
 
   for (let y = startPosition.y; y < windowHeight - letterSize - startPosition.y; y += margin.y) {
     isBreak = false;
