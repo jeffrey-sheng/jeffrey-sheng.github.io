@@ -30,7 +30,7 @@ body {
 }
 
 .icon-refresh {
-  padding: 45px;
+  padding: 50px;
   background-size: contain;
   background-color: white;
   -webkit-mask-image: url('public/icon-refresh.svg');
@@ -38,9 +38,17 @@ body {
 }
 
 .icon-restart {
-  padding: 45px;
+  padding: 50px;
   background-size: contain;
   background-color: white;
   -webkit-mask-image: url('public/icon-restart.svg');
   mask-image: url('public/icon-restart.svg');
+}
+
+.icon-replay {
+  padding: 45px;
+  background-size: contain;
+  background-color: white;
+  -webkit-mask-image: url('public/icon-replay.svg');
+  mask-image: url('public/icon-replay.svg');
 }
