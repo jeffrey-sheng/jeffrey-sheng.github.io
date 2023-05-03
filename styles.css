@@ -29,10 +29,18 @@ body {
   mask-image: url('public/icon-home.svg');
 }
 
-.icon-replay {
+.icon-refresh {
   padding: 45px;
   background-size: contain;
   background-color: white;
-  -webkit-mask-image: url('public/icon-replay.svg');
-  mask-image: url('public/icon-replay.svg');
+  -webkit-mask-image: url('public/icon-refresh.svg');
+  mask-image: url('public/icon-refresh.svg');
+}
+
+.icon-restart {
+  padding: 45px;
+  background-size: contain;
+  background-color: white;
+  -webkit-mask-image: url('public/icon-restart.svg');
+  mask-image: url('public/icon-restart.svg');
 }
