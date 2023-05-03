@@ -35,7 +35,7 @@ function setup() {
   backButton.mouseReleased(() => location.href = "./index.html");
 
   let replayButton = createButton("");
-  replayButton.addClass("icon-refresh");
+  replayButton.addClass("icon-restart");
   replayButton.position(windowWidth - 100 - NAV_BUTTON_DIMENSION.margin.x, NAV_BUTTON_DIMENSION.margin.y);
   replayButton.mouseReleased(() => {
     userEntry = [];
