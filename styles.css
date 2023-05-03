@@ -28,3 +28,11 @@ body {
   -webkit-mask-image: url('public/icon-home.svg');
   mask-image: url('public/icon-home.svg');
 }
+
+.icon-replay {
+  padding: 45px;
+  background-size: contain;
+  background-color: white;
+  -webkit-mask-image: url('public/icon-replay.svg');
+  mask-image: url('public/icon-replay.svg');
+}

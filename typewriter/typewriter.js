@@ -31,9 +31,16 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   let backButton = createButton("");
   backButton.addClass("icon-left-arrow");
-
   backButton.position(NAV_BUTTON_DIMENSION.margin.x, NAV_BUTTON_DIMENSION.margin.y);
   backButton.mouseReleased(() => location.href = "./index.html");
+
+  let replayButton = createButton("");
+  replayButton.addClass("icon-replay");
+  replayButton.position(windowWidth - 100 - NAV_BUTTON_DIMENSION.margin.x, NAV_BUTTON_DIMENSION.margin.y);
+  replayButton.mouseReleased(() => {
+    userEntry = [];
+    cursorIndex = 0;
+  });
   // background(255);
 }
 
