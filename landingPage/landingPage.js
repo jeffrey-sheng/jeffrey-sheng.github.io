@@ -282,6 +282,11 @@ function draw() {
         textLeading(70);
         text(LANDING_PAGE_INSTRUCTION, NAV_BUTTON_DIMENSION.margin.x, NAV_BUTTON_DIMENSION.margin.y * 2.5, windowWidth * 0.3, windowHeight / 2);
         pop();
+    } else {
+        let replayButton = createButton("");
+        replayButton.addClass("icon-replay");
+        replayButton.position(NAV_BUTTON_DIMENSION.margin.x, NAV_BUTTON_DIMENSION.margin.y);
+        replayButton.mouseReleased(() => location.href = "./index.html");
     }
 
     bodies.forEach(body => body.show());
